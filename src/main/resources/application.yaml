@@ -1,0 +1,49 @@
+"%test":
+  scheduler:
+    baseUrl: http://localhost:8081
+  quarkus:
+    log:
+      category:
+        "io.quarkus.infinispan":
+          level: TRACE
+      min-level: FINEST
+    oidc:
+      enabled: false
+    http:
+      port: 8081
+    infinispan-client:
+      client-intelligence: BASIC
+      use-schema-registration: true
+      use-auth: true
+      auth-username: admin
+      auth-password: password
+      cache:
+        "cache":
+          configuration-uri: "cache-configuration.xml"
+          near-cache-mode: disabled
+          near-cache-max-entries: -1
+      devservices:
+        image-name: "infinispan/server:14.0.2.Final"
+
+"%dev":
+  quarkus:
+    http:
+      port: 8181
+    infinispan-client:
+      client-intelligence: BASIC
+      use-schema-registration: true
+      use-auth: true
+      auth-username: admin
+      auth-password: password
+      cache:
+        "cache":
+          configuration-uri: "cache-configuration.xml"
+          near-cache-mode: disabled
+          near-cache-max-entries: -1
+      devservices:
+        image-name: "infinispan/server:14.0.2.Final"
+    log:
+      category:
+        "io.quarkus.infinispan":
+          level: TRACE
+      min-level: FINEST
